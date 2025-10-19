@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { GlobalStyle } from './styles/GlobalStyles';
+import Sidebar from './components/Sidebar';
+import GroupsPage from './pages/GroupsPage';
+import GroupPage from './pages/GroupPage';
+import CreateGroupPage from './pages/CreateGroupPage';
+import AddStudentPage from './pages/AddStudentPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <GlobalStyle />
+      <div style={{ display: 'flex' }}>
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<GroupsPage />} />
+          <Route path="/group/:id" element={<GroupPage />} />
+          <Route path="/create-group" element={<CreateGroupPage />} />
+          <Route path="/add-student" element={<AddStudentPage />} />
+          <Route path="/add-student/:groupId" element={<AddStudentPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
